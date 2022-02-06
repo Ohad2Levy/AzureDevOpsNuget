@@ -1,0 +1,24 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: CmdLine@2
+  displayName: 'Custom git clone'
+  inputs:
+    script: |
+      echo 'Cloning into sources folder at: $(Build.SourcesDirectory)'
+      git clone https://github.com/jfrog/project-examples.git
+      exit
+
+- task: ArtifactoryNuGet@2
+  inputs:
+    command: 'restore'
+    solutionPath: 'project-examples**/*.sln'
