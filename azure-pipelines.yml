@@ -21,4 +21,6 @@ steps:
 - task: ArtifactoryNuGet@2
   inputs:
     command: 'restore'
-    solutionPath: 'project-examples**/*.sln'
+    artifactoryService: 'ArtSaas'
+    targetResolveRepo: 'nuget'
+    solutionPath: 'project-examples/nuget-example/multi-example/multi-example.sln'
