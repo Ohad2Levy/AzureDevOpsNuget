@@ -17,7 +17,12 @@ steps:
       echo 'Cloning into sources folder at: $(Build.SourcesDirectory)'
       git clone https://github.com/jfrog/project-examples.git
       exit
-
+- task: ArtifactoryToolsInstaller@1
+  inputs:
+    artifactoryService: 'ArtSaas'
+    cliInstallationRepo: 'jfrog-cli'
+    installCustomVersion: true
+    cliVersion: '1.53.0'
 - task: ArtifactoryNuGet@2
   inputs:
     command: 'restore'
