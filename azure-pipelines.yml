@@ -3,9 +3,11 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+trigger:
+- main
+
 pool:
-  name: Default
-  demands: docker
+  vmImage: ubuntu-latest
 
 steps:
 - task: CmdLine@2
@@ -27,3 +29,10 @@ steps:
     artifactoryService: 'ArtSaas'
     targetResolveRepo: 'nuget'
     solutionPath: 'project-examples/nuget-example/multi-example/multi-example.sln'
+- task: CmdLine@2
+  displayName: 'find nuget excution file'
+  inputs:
+    script: |
+      echo 'running find command for nuget excutioin file'
+      find . -name *nuget*
+      exit
