@@ -16,6 +16,7 @@ steps:
     script: |
       echo 'Cloning into sources folder at: $(Build.SourcesDirectory)'
       git clone https://github.com/jfrog/project-examples.git
+      export JFROG_CLI_LOG_LEVEL=DEBUG
       exit
 - task: ArtifactoryToolsInstaller@1
   inputs:
@@ -34,5 +35,6 @@ steps:
   inputs:
     script: |
       echo 'running find command for nuget excutioin file'
+      cd /
       find . -name *nuget*
       exit
